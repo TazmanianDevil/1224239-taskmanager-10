@@ -62,7 +62,7 @@ export const getTaskCardTemplate = (task) => {
 
               <div class="card__hashtag">
                 <div class="card__hashtag-list">
-                  ${getHashTagTemplates(Array.from(tags))}
+                  ${getHashTagTemplates([...tags])}
                 </div>
               </div>
             </div>
