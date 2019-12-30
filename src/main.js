@@ -13,7 +13,7 @@ const TASK_COUNT = 22;
 const SHOWING_TASKS_COUNT_ON_START = 8;
 const SHOWING_TASKS_COUNT_BY_BUTTON = 8;
 
-const rendetTask = (task) => {
+const renderTask = (task) => {
   const taskComponent = new TaskComponent(task);
   const taskEditComponent = new TaskEditComponent(task);
 
@@ -31,7 +31,7 @@ const rendetTask = (task) => {
 };
 const headerSiteElement = document.querySelector(`.main__control`);
 
-render(headerSiteElement, new MainMenuComponent());
+render(headerSiteElement, new MainMenuComponent().getElement());
 
 const mainSiteElement = document.querySelector(`.main`);
 
@@ -47,7 +47,7 @@ const tasks = generateTasks(TASK_COUNT);
 let showingTasksCount = SHOWING_TASKS_COUNT_ON_START;
 tasks
   .slice(0, showingTasksCount)
-  .forEach((task) => rendetTask(task));
+  .forEach((task) => renderTask(task));
 
 const loadMoreButton = new LoadMoreButtonComponent();
 render(taskList.getElement(), loadMoreButton.getElement());
@@ -58,7 +58,7 @@ loadMoreButton.getElement().addEventListener(`click`, () => {
 
   tasks
     .slice(prevTasksCount, showingTasksCount)
-    .forEach((task) => rendetTask(task));
+    .forEach((task) => renderTask(task));
 
   if (showingTasksCount >= tasks.length) {
     loadMoreButton.getElement().remove();
