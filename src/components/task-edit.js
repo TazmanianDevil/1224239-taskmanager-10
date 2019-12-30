@@ -1,5 +1,6 @@
 import {COLORS, DAYS, MONTH_NAMES} from '../mock/const.js';
 import {formatTime} from '../mock/util.js';
+import {createElement} from "../utils";
 
 const createColorsMarkup = (colors, currentColor) => {
   return colors
@@ -70,7 +71,7 @@ const createHashtags = (tags) => {
     .join(`\n`);
 };
 
-export const getTaskEditTemplate = (task) => {
+const getTaskEditTemplate = (task) => {
   const {description, tags, dueDate, color, repeatingDays} = task;
 
   const isExpired = dueDate instanceof Date && dueDate < Date.now();
@@ -178,3 +179,26 @@ export const getTaskEditTemplate = (task) => {
       </article>`
   );
 };
+
+export default class TaskEdit {
+  constructor(task) {
+    this._task = task;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return getTaskEditTemplate(this._task);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
