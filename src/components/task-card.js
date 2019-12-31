@@ -1,8 +1,9 @@
 import {formatTime} from "../mock/util";
 import {MONTH_NAMES} from "../mock/const";
 import {getHashTagTemplates} from "./hashtag";
+import {createElement} from "../utils";
 
-export const getTaskCardTemplate = (task) => {
+const getTaskCardTemplate = (task) => {
   const {
     description,
     dueDate,
@@ -71,5 +72,28 @@ export const getTaskCardTemplate = (task) => {
       </div>
     </article>`
   );
+};
+
+export default class Task {
+  constructor(task) {
+    this._task = task;
+
+    this._element = null;
+  }
+
+  getTemplate() {
+    return getTaskCardTemplate(this._task);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
 }
-;
