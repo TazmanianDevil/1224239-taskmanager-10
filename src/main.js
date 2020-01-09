@@ -7,9 +7,9 @@ import BoardComponent from "./components/board";
 import TaskEditComponent from "./components/task-edit";
 import LoadMoreButtonComponent from "./components/load-more-button";
 import TaskComponent from "./components/task-card";
-import TasksComponent from './components/tasks.js';
+import TasksComponent from './components/tasks';
 import SortingComponent from './components/sorting';
-import NoTasksComponent from './components/no-tasks.js';
+import NoTasksComponent from './components/no-tasks';
 
 const TASK_COUNT = 22;
 const SHOWING_TASKS_COUNT_ON_START = 8;

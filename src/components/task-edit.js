@@ -1,5 +1,5 @@
-import {COLORS, DAYS, MONTH_NAMES} from '../mock/const.js';
-import {formatTime} from '../mock/util.js';
+import {COLORS, DAYS, MONTH_NAMES} from '../mock/const';
+import {formatTime} from '../mock/util';
 import {createElement} from "../utils";
 
 const createColorsMarkup = (colors, currentColor) => {
