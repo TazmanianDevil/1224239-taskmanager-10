@@ -1,7 +1,7 @@
 import {formatTime} from "../mock/util";
 import {MONTH_NAMES} from "../mock/const";
 import {getHashTagTemplates} from "./hashtag";
-import {createElement} from "../utils";
+import AbstractComponent from "./abstract-component";
 
 const getTaskCardTemplate = (task) => {
   const {
@@ -74,26 +74,18 @@ const getTaskCardTemplate = (task) => {
   );
 };
 
-export default class Task {
+export default class Task extends AbstractComponent {
   constructor(task) {
+    super();
     this._task = task;
-
-    this._element = null;
   }
 
   getTemplate() {
     return getTaskCardTemplate(this._task);
   }
 
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
+  setEditButtonClickHandler(handler) {
+    this.getElement().querySelector(`.card__btn--edit`)
+      .addEventListener(`click`, handler);
   }
 }
