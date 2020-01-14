@@ -1,5 +1,5 @@
 import {remove, render, replace} from "../utils/render";
-import TaskComponent from "../components/task-card";
+import TaskCardComponent from "../components/task-card";
 import TaskEditComponent from "../components/task-edit";
 import NoTasksComponent from "../components/no-tasks";
 import SortingComponent from "../components/sorting";
@@ -20,6 +20,7 @@ const renderTask = (taskListElement, task) => {
   };
 
   const replaceEditToTask = () => {
+    document.removeEventListener(`keydown`, onEscapeKeyDown);
     replace(taskComponent, taskEditComponent);
   };
 
@@ -27,7 +28,7 @@ const renderTask = (taskListElement, task) => {
     replace(taskEditComponent, taskComponent);
   };
 
-  const taskComponent = new TaskComponent(task);
+  const taskComponent = new TaskCardComponent(task);
   const taskEditComponent = new TaskEditComponent(task);
 
   taskComponent.setEditButtonClickHandler(() => {
