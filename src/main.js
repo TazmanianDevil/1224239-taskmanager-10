@@ -4,7 +4,7 @@ import MainMenuComponent from "./components/main-menu";
 import FilterComponent from "./components/filters";
 import BoardComponent from "./components/board";
 import {render} from "./utils/render";
-import BoardController from './controllers/boardController';
+import BoardController from './controllers/board-controller';
 
 const TASK_COUNT = 22;
 

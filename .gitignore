@@ -6,7 +6,7 @@ Thumbs.db
 .idea
 *.sublime*
 .vscode
-
+*.iml
 # Вспомогательные файлы
 *.log*
 node_modules/
@@ -17,3 +17,4 @@ build/
 #Файлы сборки
 bundle.js
 bundle.js.map
+
