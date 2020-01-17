@@ -98,13 +98,13 @@ export default class BoardController {
 
       switch (sortType) {
         case SortType.DATE_UP:
-          sortedTasks = tasks.slice(0, showingTasksCount).sort((a, b) => a.dueDate - b.dueDate);
+          sortedTasks = [...tasks].sort((a, b) => a.dueDate - b.dueDate);
           break;
         case SortType.DATE_DOWN:
-          sortedTasks = tasks.slice(0, showingTasksCount).sort((a, b) => b.dueDate - a.dueDate);
+          sortedTasks = [...tasks].sort((a, b) => b.dueDate - a.dueDate);
           break;
         case SortType.DEFAULT:
-          sortedTasks = tasks.slice(0, showingTasksCount);
+          sortedTasks = [...tasks];
           break;
       }
       taskListElement.innerHTML = ``;
