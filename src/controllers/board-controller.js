@@ -5,45 +5,15 @@ import NoTasksComponent from "../components/no-tasks";
 import SortComponent, {SortType} from "../components/sort";
 import TasksComponent from "../components/tasks";
 import LoadMoreButtonComponent from "../components/load-more-button";
+import TaskController from "./task-controller";
 
 const SHOWING_TASKS_COUNT_ON_START = 8;
 const SHOWING_TASKS_COUNT_BY_BUTTON = 8;
 
-const renderTask = (taskListElement, task) => {
-
-  const onEscapeKeyDown = (event) => {
-    const isEscapeKeyDown = event.key === `Escape` || event.key === `Esc`;
-    if (isEscapeKeyDown) {
-      replaceEditToTask();
-      document.removeEventListener(`keydown`, onEscapeKeyDown);
-    }
-  };
-
-  const replaceEditToTask = () => {
-    document.removeEventListener(`keydown`, onEscapeKeyDown);
-    replace(taskComponent, taskEditComponent);
-  };
-
-  const replaceTaskToEdit = () => {
-    replace(taskEditComponent, taskComponent);
-  };
-
-  const taskComponent = new TaskCardComponent(task);
-  const taskEditComponent = new TaskEditComponent(task);
-
-  taskComponent.setEditButtonClickHandler(() => {
-    replaceTaskToEdit();
-    document.addEventListener(`keydown`, onEscapeKeyDown);
-  });
-
-  taskEditComponent.setSubmitHandler(replaceEditToTask);
-
-  render(taskListElement, taskComponent);
-};
-
 const renderTasks = (taskListElement, tasks) => {
   tasks.forEach((task) => {
-    renderTask(taskListElement, task);
+    const taskController = new TaskController(taskListElement);
+    taskController.render(task);
   });
 };
 
