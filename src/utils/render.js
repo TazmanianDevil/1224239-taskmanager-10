@@ -29,7 +29,7 @@ export const replace = (newComponent, oldComponent) => {
   if (!oldElement) {
     return;
   }
-  const parentElement = oldComponent.getElement().parentElement;
+  const parentElement = oldElement.parentElement;
   if (parentElement) {
     parentElement.replaceChild(newElement, oldElement);
   }
