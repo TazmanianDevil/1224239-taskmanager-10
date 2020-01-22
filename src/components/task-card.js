@@ -1,8 +1,9 @@
 import AbstractComponent from './abstract-component.js';
-import {formatTime, formatDate} from '../utils/common.js';
+import {formatDate, formatTime} from '../utils/common.js';
 import {getHashTagTemplates} from "./hashtag.js";
+import {isRepeating} from "../utils/common";
 
-const createButtonMarkup = (name, isActive) => {
+const createButtonMarkup = (name, isActive = true) => {
   return (
     `<button
       type="button"
@@ -18,15 +19,13 @@ const getTaskCardTemplate = (task) => {
 
   const isExpired = dueDate instanceof Date && dueDate < Date.now();
   const isDateShowing = !!dueDate;
+  const [date, time] = isDateShowing ? [formatDate(dueDate), formatTime(dueDate)] : [``, ``];
 
-  const date = isDateShowing ? formatDate(dueDate) : ``;
-  const time = isDateShowing ? formatTime(dueDate) : ``;
-
-  const editButton = createButtonMarkup(`edit`, true);
+  const editButton = createButtonMarkup(`edit`);
   const archiveButton = createButtonMarkup(`archive`, task.isArchive);
   const favoritesButton = createButtonMarkup(`favorites`, task.isFavorite);
 
-  const repeatClass = Object.values(repeatingDays).some(Boolean) ? `card--repeat` : ``;
+  const repeatClass = isRepeating(repeatingDays) ? `card--repeat` : ``;
   const deadlineClass = isExpired ? `card--deadline` : ``;
 
   return (

@@ -1,4 +1,4 @@
-import {COLORS, DEFAULT_REPEATING_DAYS} from "./const";
+import {DEFAULT_REPEATING_DAYS} from "./const";
 
 export const getRandomArrayItem = (array) => {
   const index = Math.floor(array.length * Math.random());
@@ -15,23 +15,6 @@ export const generateTags = (tags) => {
   return tags
     .filter(() => Math.random() > 0.5)
     .slice(0, 3);
-};
-
-export const generateColor = () => {
-  return getRandomArrayItem(COLORS);
-};
-
-const castTimeFormat = (value) => {
-  return value < 10 ? `0${value}` : String(value);
-};
-
-export const formatTime = (date) => {
-  const hours = castTimeFormat(date.getHours() % 12);
-  const minutes = castTimeFormat(date.getMinutes());
-
-  const interval = date.getHours() > 11 ? `pm` : `am`;
-
-  return `${hours}:${minutes} ${interval}`;
 };
 
 export const getRandomDate = () => {

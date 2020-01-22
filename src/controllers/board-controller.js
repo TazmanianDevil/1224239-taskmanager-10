@@ -88,7 +88,9 @@ export default class BoardController {
       return;
     }
 
-    this._tasks = [].concat(this._tasks.slice(0, index), newData, this._tasks.slice(index + 1));
+    const beforeNewElementItems = this._tasks.slice(0, index);
+    const afterNewElementItems = this._tasks.slice(index + 1);
+    this._tasks = [].concat(beforeNewElementItems, newData, afterNewElementItems);
 
     taskController.render(this._tasks[index]);
   }
